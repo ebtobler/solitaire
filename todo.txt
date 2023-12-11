@@ -1,2 +1,26 @@
 TO DO LIST:
-everything lol
+
+Card object
+- numbers/values
+- colors
+- suits
+
+Game flow
+- printing current game
+- user input
+    - commands
+    - add (num 1-7) - put current card on specified stack
+    - move (num 1-7) (num 1-7) - move first stack onto second stack
+    - play (num 1-7) - play card at top of specified stack
+    - play c - play current card
+    - if invalid command given, print list of commands and formats
+    - if invald arguments given, print valid arguments
+    - if move is invalid, print rule that states why it is invalid (i.e. card colors must alternate on stacks)
+- draw 1 option (draw 3 default)
+- hints
+    - provide list of available moves for current game state
+
+Setup
+- selecting random or guaranteed solvable game states
+- random algorithm
+- solvable game algorithm
