@@ -9,10 +9,12 @@ class Card {
     char value;         // 0 is Joker, 1-10 are literal, 11 = Jack, 12 = Queen, 13 = King
     char suit;          // 0 is clubs, 1 is diamonds, 2 is hearts, 3 is spades 
     char color;         // 0 is black, 1 is red
-    
+    void printval();
+    void printsuit();
+
     public:
-        Card(char value, char suit);
+        Card(char v, char s);
         std::string tostring();
-        std::string graphcard();
+        void printcard();
 };
 #endif // CARD_H
