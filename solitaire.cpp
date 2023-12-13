@@ -22,6 +22,19 @@ void printSetup() {
         for (int blanks = 0; blanks < 6 - row; blanks++) {  // prints blank cards in next columns
             std::cout << " " << blank() << " |";
         }
+        if (row == 0) {
+            Card aclubs = Card(1, 0);
+            std::cout << " " << aclubs.cardstr();
+        } else if (row == 2) {
+            Card aclubs = Card(1, 1);
+            std::cout << " " << aclubs.cardstr();
+        } else if (row == 4) {
+            Card aclubs = Card(1, 2);
+            std::cout << " " << aclubs.cardstr();
+        } else if (row == 6) {
+            Card aclubs = Card(1, 3);
+            std::cout << " " << aclubs.cardstr();
+        }
         std::cout << "\n";
     }
     for (int i = 1; i <= 7; i++) {

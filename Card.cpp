@@ -172,6 +172,10 @@ std::string Card::cardstr() {
         }
     } else if (value == 10) {
         v = "X";
+    } else if (value == 1) {
+        v = "A";
+    } else if (value == 0) {
+        v = "☺";
     } else {
         v = std::to_string(value);
     }
