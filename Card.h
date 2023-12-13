@@ -12,7 +12,11 @@ class Card {
 
     public:
         Card(char v, char s);
-        std::string tostring();
+        std::string to_string();
         void printcard();
+        std::string cardstr();
+
 };
 #endif // CARD_H
+
+std::string blank();

@@ -83,7 +83,7 @@ Card::Card(char v, char s) {
 }
 
 // converts card to string in format "%s of %s"
-std::string Card::tostring() {
+std::string Card::to_string() {
     char buffer[25];
     int size = 25;
     snprintf(buffer, size, "%s of %s", valName.c_str(), suitName.c_str());
@@ -113,10 +113,8 @@ void Card::printcard() {
                 break;
         }
     } else if (value == 10) {
-        //v = std::to_string(value);
         v = "X";
     } else {
-        //v = " " + std::to_string(value);
         v = std::to_string(value);
     }
     std::string s;
@@ -137,7 +135,6 @@ void Card::printcard() {
             s = " ";
             break;
     }
-
     std::string outstr = v + s;
 
     //  manages print color 
@@ -149,5 +146,71 @@ void Card::printcard() {
     } else if (color == 1) {  // red
         std::cout << "\033[47;31m";
     }
+
     std::cout << std::setfill(' ') << std::setw(3) << outstr << "\033[0m";
+}
+
+
+std::string Card::cardstr() {
+    std::string ret;
+
+    std::string v;
+    if (value > 10) {
+        switch(value) {
+            case 11:
+                v = "J";
+                break;
+            case 12:
+                v = "Q";
+                break;
+            case 13:
+                v = "K";
+                break;
+            default:
+                v = " ";
+                break;
+        }
+    } else if (value == 10) {
+        v = "X";
+    } else {
+        v = std::to_string(value);
+    }
+    std::string s;
+    switch(suit) {
+        case 0:
+            s = "♣";
+            break;
+        case 1:
+            s = "♢";
+            break;
+        case 2:
+            s = "♡";
+            break;
+        case 3:
+            s = "♠";
+            break;
+        default:
+            s = " ";
+            break;
+    }
+    ret = v + s;
+
+    //  manages print color 
+    //  format: starts with \033 (escape char) followed by [
+    //          after that are numbers separated by ; and terminated by 'm'
+    //          47 = white background, 31 = red text, 
+    if (color == 0) {  // black
+        ret = "\033[47;30m" + ret;
+    } else if (color == 1) {  // red
+        ret = "\033[47;31m" + ret;
+    }
+
+    ret = ret + "\033[0m";
+    return ret;
+}
+
+
+std::string blank() {
+    std::string ret = "\033[47;30m[]\033[0m";
+    return ret;
 }
