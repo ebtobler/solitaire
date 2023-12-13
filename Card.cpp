@@ -1,5 +1,6 @@
 #include "Card.h"
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <stdio.h>
 
@@ -91,101 +92,60 @@ std::string Card::tostring() {
 }
 
 
-void Card::printval() {
-    switch(value) {
-        case 0:  // joker
-            printf("%c", '!');
+// prints the card 
+//  three characters - two for value, one for suit
+//  text color will correspond to card color
+void Card::printcard() {
+    std::string v;
+    if (value > 10) {
+        switch(value) {
+            case 11:
+                v = " J";
+                break;
+            case 12:
+                v = " Q";
+                break;
+            case 13:
+                v = " K";
+                break;
+            default:
+                v = "  ";
+                break;
+        }
+    } else if (value == 10) {
+        v = std::to_string(value);
+    } else {
+        v = " " + std::to_string(value);
+    }
+    std::string s;
+    switch(suit) {
+        case 0:
+            s = "♣";
             break;
-        case 1:  // ace
-            printf("%c", 'A');
+        case 1:
+            s = "♢";
             break;
         case 2:
-            printf("%c", '2');
+            s = "♡";
             break;
         case 3:
-            printf("%c", '3');
-            break;
-        case 4:
-            printf("%c", '4');
-            break;
-        case 5:
-            printf("%c", '5');
-            break;
-        case 6:
-            printf("%c", '6');
-            break;
-        case 7:
-            printf("%c", '7');
-            break;
-        case 8:
-            printf("%c", '8');
-            break;
-        case 9:
-            printf("%c", '9');
-            break;
-        case 10:
-            printf("%c", '1');
-            break;
-        case 11:  // jack
-            printf("%c", 'J');
-            break;
-        case 12:  // queen
-            printf("%c", 'Q');
-            break;
-        case 13:  // king
-            printf("%c", 'K');
+            s = "♠";
             break;
         default:
-            printf(" ");
+            s = " ";
             break;
     }
-}
 
+    std::string outstr = v + s;
 
-void Card:: printsuit() {
-    switch(suit) {
-    case 0:  // clubs
-        printf("♣");
-        break;
-    case 1:  // diamonds
-        printf("♢");
-        break;
-    case 2:  // hearts
-        printf("♡");
-        break;
-    case 3:  // spades
-        printf("♠");
-        break;
-    default:
-        printf(" ");
-        break;
+    //  manages print color 
+    //  format: starts with \033 (escape char) followed by [
+    //          after that are numbers separated by ; and terminated by 'm'
+    //          47 = white background, 31 = red text, 
+    if (color == 0) {  // black
+        std::cout << "\033[47;30m";
+    } else if (color == 1) {  // red
+        std::cout << "\033[47;31m";
     }
-
+    std::cout << std::setfill(' ') << std::setw(3) << outstr << "\033[0m";
 }
-
-
-void Card::printcard() {
-      /*" ____________ \n"  // 0-14
-        "|v          s|\n"  // 15-29
-        "|            |\n"  // 30-44
-        "|            |\n"  // 45 - 59
-        "|            |\n"  // 60 - 74
-        "|            |\n"  // 75 - 89
-        "|            |\n"  // 90 - 104
-        "|            |\n"  // 105 - 119
-        "|s__________v|\n"; // 120 - 134*/
-    printf(" ____________ \n");
-    printf("|");
-    printval();
-    printf("          ");
-    printsuit();
-    printf("|\n");
-    printf("|            |\n|            |\n|            |\n|            |\n|            |\n|            |\n");
-    printf("|");
-    printsuit();
-    printf("__________");
-    printval();
-    printf("|\n");
-        
-}
-
