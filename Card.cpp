@@ -100,22 +100,24 @@ void Card::printcard() {
     if (value > 10) {
         switch(value) {
             case 11:
-                v = " J";
+                v = "J";
                 break;
             case 12:
-                v = " Q";
+                v = "Q";
                 break;
             case 13:
-                v = " K";
+                v = "K";
                 break;
             default:
-                v = "  ";
+                v = " ";
                 break;
         }
     } else if (value == 10) {
-        v = std::to_string(value);
+        //v = std::to_string(value);
+        v = "X";
     } else {
-        v = " " + std::to_string(value);
+        //v = " " + std::to_string(value);
+        v = std::to_string(value);
     }
     std::string s;
     switch(suit) {
