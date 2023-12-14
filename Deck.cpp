@@ -20,7 +20,7 @@ Deck::Deck() {
 //  Does not remove the card from the deck array,
 //  simply moves the pointer to the top card, i.e.
 //  the size of the deck
-Card Deck::draw() {
+Card *Deck::draw() {
     size--;
-    return deck[size];
+    return &deck[size];
 }

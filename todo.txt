@@ -1,12 +1,23 @@
 TO DO LIST:
 
 Card object
-- numbers/values
-- colors
-- suits
+- numbers/values -- DONE
+- colors -- DONE
+- suits -- DONE
+
+Deck object
+- default order 
+    - spades, hearts, diamonds, clubs (A-K)
+- shuffle
+    - pseudo-random order
+- draw
+    - maintain order of deck
 
 Game flow
-- printing current game
+- game state
+    - handle for game state
+    - 2D array for current card stacks 
+        - 7x13 array - 7 for stack slots, 13 for max stack size
 - user input
     - commands
     - add (num 1-7) - put current card on specified stack

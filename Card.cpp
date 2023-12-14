@@ -82,6 +82,7 @@ Card::Card(char v, char s) {
     }
 }
 
+
 // converts card to string in format "%s of %s"
 std::string Card::to_string() {
     char buffer[25];
@@ -151,6 +152,10 @@ void Card::printcard() {
 }
 
 
+// returns 2-char string of the card with white background
+//  and text color corresponding to card color
+//  -- similar to printcard(), but this returns the actual string
+//     whereas printcard() actually prints the card
 std::string Card::cardstr() {
     std::string ret;
 
@@ -214,6 +219,7 @@ std::string Card::cardstr() {
 }
 
 
+// prints a facedown card
 std::string blank() {
     std::string ret = "\033[47;30m[]\033[0m";
     return ret;

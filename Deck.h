@@ -9,6 +9,6 @@ class Deck {
     public:
         int size;
         Deck();
-        Card draw();
+        Card *draw();
 };
 #endif // DECK_H
