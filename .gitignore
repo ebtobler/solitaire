@@ -1,4 +1,5 @@
 .vscode
 Card.o
 solitaire.o
+Deck.o
 sol
