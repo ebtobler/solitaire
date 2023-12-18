@@ -18,6 +18,7 @@ Game flow
     - handle for game state -- DONE
     - 2D array for current card stacks -- DONE
         - 7x13 array - 7 for stack slots, 13 for max stack size -- DONE
+    - change game state based on user input
 - user input
     - commands
     - add (num 1-7) - put current card on specified stack
