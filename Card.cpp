@@ -83,6 +83,17 @@ Card::Card(char v, char s) {
 }
 
 
+// Card clone constructor
+//  Copies the attributes of card c into card v
+void Card::copyCard(Card c) {
+    valName = c.valName;
+    suitName = c.suitName;
+    value = c.value;
+    suit = c.suit;
+    color = c.color;
+}
+
+
 // converts card to string in format "%s of %s"
 std::string Card::to_string() {
     char buffer[25];
@@ -180,7 +191,7 @@ std::string Card::cardstr() {
     } else if (value == 1) {
         v = "A";
     } else if (value == 0) {
-        v = "☺";
+        v = " ";
     } else {
         v = std::to_string(value);
     }

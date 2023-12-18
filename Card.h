@@ -12,6 +12,7 @@ class Card {
 
     public:
         Card(char v = 0, char s = 0);
+        void copyCard(Card c);
         std::string to_string();
         void printcard();
         std::string cardstr();

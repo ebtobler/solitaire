@@ -4,11 +4,12 @@
 #define DECK_H
 class Deck {
     private:
-        Card deck[52];
+        Card *deck;
 
     public:
         int size;
         Deck();
         Card *draw();
+        void shuffle(unsigned int seed);
 };
 #endif // DECK_H

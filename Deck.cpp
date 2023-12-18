@@ -1,15 +1,17 @@
+#include <iostream>
 #include "Deck.h"
 #include "Card.h"
-
 
 // Deck constructor
 //  Initial order of the deck is as follows in ace to king order:
 //  Clubs, diamonds, hearts, spades
 Deck::Deck() {
+    deck = (Card *) calloc(sizeof(Card), 52);
     for (int suit = 0; suit <= 3; suit++) {
         for (int value = 1; value <= 13; value++) {
             int index = (13 * suit) + (value - 1);
-            deck[index] = Card(value, suit);
+            Card c = Card(value, suit);
+            deck[index].copyCard(c);
         }
     }
     size = 52;
@@ -23,4 +25,27 @@ Deck::Deck() {
 Card *Deck::draw() {
     size--;
     return &deck[size];
+}
+
+
+void Deck::shuffle(unsigned int seed) {
+    srand(seed);
+    Card *shuffled = (Card *) calloc(sizeof(Card), 52);
+    char filled[52] = {0};
+    for (int suit = 0; suit <= 3; suit++) {
+        for (int value = 1; value <= 13; value++) {
+            int index = rand() % 52;
+            while (filled[index]) {
+                index++;
+                if (index >= 52) {
+                    index = 0;
+                }
+            }
+            Card c = Card(value, suit);
+            shuffled[index].copyCard(c);
+            filled[index] = 1;
+        }
+    }
+    deck = shuffled;
+    size = 52;
 }

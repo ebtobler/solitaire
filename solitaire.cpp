@@ -11,12 +11,15 @@ typedef struct state {
 } state_t;
 
 
-state *game_init() {
+state *game_init(unsigned int seed = 0) {
     state *handle = (state *) malloc(sizeof(state));
     if (handle == NULL) {
         std::cerr << "Game state handle malloc failed\n";
     }
     Deck deck = Deck();
+    if (seed != 0) {
+        deck.shuffle(seed);
+    }
     handle->deck = deck;
     for (int stack = 0; stack < 7; stack++) {
         for (int n = 0; n < 6; n++) {  // initializes all the revealed booleans to -1 indicating empty
@@ -70,17 +73,17 @@ void print_state(state *handle) {
 
         // prints card piles 
         if (row == 0) {
-            Card aclubs = Card(1, 0);
-            std::cout << " " << aclubs.cardstr();
+            Card clubs = Card(0, 0);
+            std::cout << " " << clubs.cardstr();
         } else if (row == 2) {
-            Card aclubs = Card(1, 1);
-            std::cout << " " << aclubs.cardstr();
+            Card diamonds = Card(0, 1);
+            std::cout << " " << diamonds.cardstr();
         } else if (row == 4) {
-            Card aclubs = Card(1, 2);
-            std::cout << " " << aclubs.cardstr();
+            Card hearts = Card(0, 2);
+            std::cout << " " << hearts.cardstr();
         } else if (row == 6) {
-            Card aclubs = Card(1, 3);
-            std::cout << " " << aclubs.cardstr();
+            Card spades = Card(0, 3);
+            std::cout << " " << spades.cardstr();
         }
 
         std::cout << "\n";
@@ -114,17 +117,17 @@ void printSetup() {
             std::cout << " " << blank() << " |";
         }
         if (row == 0) {
-            Card aclubs = Card(1, 0);
-            std::cout << " " << aclubs.cardstr();
+            Card clubs = Card(0, 0);
+            std::cout << " " << clubs.cardstr();
         } else if (row == 2) {
-            Card aclubs = Card(1, 1);
-            std::cout << " " << aclubs.cardstr();
+            Card diamonds = Card(0, 1);
+            std::cout << " " << diamonds.cardstr();
         } else if (row == 4) {
-            Card aclubs = Card(1, 2);
-            std::cout << " " << aclubs.cardstr();
+            Card hearts = Card(0, 2);
+            std::cout << " " << hearts.cardstr();
         } else if (row == 6) {
-            Card aclubs = Card(1, 3);
-            std::cout << " " << aclubs.cardstr();
+            Card spades = Card(0, 3);
+            std::cout << " " << spades.cardstr();
         }
         std::cout << "\n";
     }
@@ -148,7 +151,7 @@ int main(int argc, char *argv[]) {
     }
     for (int s = 0; s < 14; s++) {
         std::cout << blank() << " | ";
-    }*/
+    }
     Deck deck = Deck();
     while (deck.size > 0) {
         Card *card = deck.draw();
@@ -156,9 +159,9 @@ int main(int argc, char *argv[]) {
         if (deck.size % 13 == 0) {
             std::cout << "\n";
         }
-    }
+    }*/
     std::cout << "\n\n";
-    state *handle = game_init();
+    state *handle = game_init(2);
     print_state(handle);
     //printSetup();
 }
