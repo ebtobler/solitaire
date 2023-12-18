@@ -3,19 +3,21 @@
 #include "Deck.h"
 
 
-// struct to represent game state
+// struct to represent game state_t
 typedef struct state {
     Deck deck;              // deck to draw from
     Card *stacks[7][13];     // represents each stack of cards
     char revealed[7][6];    // boolean that signifies if card has been revealed or not
+    char win;
 } state_t;
 
 
-// initializes the game and returns a handle to the game state
-state *game_init(unsigned int seed = 0) {
-    state *handle = (state *) malloc(sizeof(state));
+// initializes the game and returns a handle to the game state_t
+state_t *game_init(unsigned int seed = 0) {
+    state_t *handle = (state_t *) malloc(sizeof(state_t));
     if (handle == NULL) {
-        std::cerr << "Game state handle malloc failed\n";
+        std::cerr << "Game state_t handle malloc failed\n";
+        return NULL;
     }
     Deck deck = Deck();
     if (seed != 0) {
@@ -34,12 +36,13 @@ state *game_init(unsigned int seed = 0) {
             }
         }
     }
+    handle->win = 0;
     return handle;
 }
 
 
-// prints state of given state handle
-void print_state(state *handle) {
+// prints state_t of given state_t handle
+void print_state_t(state_t *handle) {
     for (int row = 0; row < 13; row++) {  // for each row
 
         char cont = 0;
@@ -96,6 +99,25 @@ void print_state(state *handle) {
 }
 
 
+// adds the current card in hand to specified stack (1-7)
+void add(char stack) {
+    
+}
+
+
+// moves the revealed cards on stack 1 onto stack 2
+void move(char stack1, char stack2) {
+
+}
+
+
+// plays the card at the top of the specified stack
+//  default 0 plays card in hand
+void play(char stack = 0) {
+
+}
+
+
 // prints the initial board setup for reference/debugging
 /*
  ff | bb | bb | bb | bb | bb | bb | cc
@@ -140,29 +162,18 @@ void printSetup() {
 
 
 int main(int argc, char *argv[]) {
-    
-    /*for (int s = 0; s < 4; s++) {
-        for (int v = 0; v < 14; v++) {
-            Card c(v, s);
-            //c.printcard();
-            //std::cout << " | ";
-            std::cout << c.cardstr() << " | ";
-        }
-        std::cout << "\n";
-    }
-    for (int s = 0; s < 14; s++) {
-        std::cout << blank() << " | ";
-    }
-    Deck deck = Deck();
-    while (deck.size > 0) {
-        Card *card = deck.draw();
-        std::cout << card->cardstr() << " | ";
-        if (deck.size % 13 == 0) {
-            std::cout << "\n";
-        }
-    }*/
+    int seed;
+    std::cout << "Type an integer seed for game setup: ";
+    std::cin >> seed;
     std::cout << "\n\n";
-    state *handle = game_init(2);
-    print_state(handle);
+    state_t *handle = game_init(seed);
+
+    while (!handle->win) {
+        print_state_t(handle);
+        std::string cmd;
+        std::cout << "Type a command: ";
+        std::cin >> cmd;
+        std::cout << cmd + "\n";
+    }
     //printSetup();
 }
