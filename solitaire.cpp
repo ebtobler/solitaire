@@ -11,6 +11,7 @@ typedef struct state {
 } state_t;
 
 
+// initializes the game and returns a handle to the game state
 state *game_init(unsigned int seed = 0) {
     state *handle = (state *) malloc(sizeof(state));
     if (handle == NULL) {

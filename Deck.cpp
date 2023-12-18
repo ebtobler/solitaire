@@ -28,6 +28,7 @@ Card *Deck::draw() {
 }
 
 
+// shuffles the deck using a seed provided
 void Deck::shuffle(unsigned int seed) {
     srand(seed);
     Card *shuffled = (Card *) calloc(sizeof(Card), 52);
